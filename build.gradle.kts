@@ -3,8 +3,9 @@
     `java-gradle-plugin`
     `maven-publish`
     signing
-    alias(plugs.plugins.nexus.publish)
-    alias(plugs.plugins.publish)
+    alias(nexus.plugins.publish)
+	id("com.gradle.plugin-publish") version "0.16.0"
+//    alias(plugs.plugins.publish)
 }
 
 repositories {
@@ -150,9 +151,9 @@ artifacts {
 }
 
 dependencies {
-    implementation(plugs.android)
-    implementation(plugs.kotlin.core)
-//    implementation(plugs.kotlin.serialization)
-    implementation(plugs.nexus.staging)
-    implementation(plugs.nexus.publish)
+    implementation(androidx.gradle.plugin)
+    implementation(kotlinz.gradle.plugin)
+    implementation(kotlinz.gradle.plugin.serialization)
+    implementation(nexus.gradle.plugin.publish)
+    implementation(nexus.gradle.plugin.staging)
 }
