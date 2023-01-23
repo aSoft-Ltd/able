@@ -153,7 +153,7 @@ artifacts {
 dependencies {
     implementation(androidx.gradle.plugin)
     implementation(kotlinz.gradle.plugin)
-    implementation(kotlinz.gradle.plugin.serialization)
+    // implementation(kotlinz.gradle.plugin.serialization)
     implementation(nexus.gradle.plugin.publish)
     implementation(nexus.gradle.plugin.staging)
 }

@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.gradle.dsl.KotlinJvmCompilerOptions
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinAndroidTarget
@@ -21,11 +22,11 @@ fun KotlinJvmTarget.library(java: String = "1.8") {
     targetJava(java)
 }
 
-fun KotlinWithJavaTarget<KotlinJvmOptions>.library(java: String = "1.8") {
+fun KotlinWithJavaTarget<KotlinJvmOptions, KotlinJvmCompilerOptions>.library(java: String = "1.8") {
     targetJava(java)
 }
 
-fun KotlinWithJavaTarget<KotlinJvmOptions>.application(java: String = "1.8") {
+fun KotlinWithJavaTarget<KotlinJvmOptions, KotlinJvmCompilerOptions>.application(java: String = "1.8") {
     targetJava(java)
 }
 
@@ -52,7 +53,9 @@ fun KotlinJsTargetDsl.browserLib(testTimeout: Int? = 10000, config: (KotlinJsBro
 fun KotlinJsTargetDsl.browserApp(testTimeout: Int? = null, config: (KotlinJsBrowserDsl.() -> Unit)? = null) {
     browserLib(testTimeout) {
         commonWebpackConfig {
-            cssSupport.enabled = true
+            cssSupport {
+                enabled.set(true)
+            }
             outputFileName = "main.bundle.js"
             devServer = project.DEFAULT_DEV_SERVER
         }
