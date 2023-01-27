@@ -41,10 +41,10 @@ gradlePlugin {
 }
 
 group = "tz.co.asoft"
-version = asoft.versions.foundation.get()
+version = asoft.versions.root.get()
 
 pluginBundle {
-    website = "https://github.com/aSoft-Ltd/foundation/tree/master/foundation-plugins"
+    website = "https://github.com/aSoft-Ltd/able"
     vcsUrl = website
     description = "Simple Plugins to Ease Library Development"
 
