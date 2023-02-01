@@ -37,7 +37,7 @@ fun KotlinJvmTarget.application(java: String = "1.8") {
 /**
  * @param testTimeout in milliseconds, set to null to disable testing
  */
-fun KotlinJsTargetDsl.browserLib(testTimeout: Int? = 10000, config: (KotlinJsBrowserDsl.() -> Unit)? = null) {
+fun KotlinJsTargetDsl.browserLib(testTimeout: Int? = null, config: (KotlinJsBrowserDsl.() -> Unit)? = null) {
     if (testTimeout != null) project.createKarmaTimeoutFile(testTimeout)
     compilations.all { kotlinOptions { sourceMap = true } }
     browser {
@@ -67,7 +67,7 @@ fun KotlinJsTargetDsl.browserApp(testTimeout: Int? = null, config: (KotlinJsBrow
 /**
  * @param testTimeout in milliseconds, set to null to disable testing
  */
-fun KotlinJsTargetDsl.nodeLib(testTimeout: Int? = 10000, config: (KotlinJsNodeDsl.() -> Unit)? = null) {
+fun KotlinJsTargetDsl.nodeLib(testTimeout: Int? = null, config: (KotlinJsNodeDsl.() -> Unit)? = null) {
     nodejs {
         testTask {
             if (config != null) config()
@@ -84,7 +84,7 @@ fun KotlinJsTargetDsl.nodeApp(testTimeout: Int? = null, config: (KotlinJsNodeDsl
 }
 
 
-fun KotlinJsTargetDsl.library(testTimeout: Int? = 10000, config: (KotlinJsTargetDsl.() -> Unit)? = null) {
+fun KotlinJsTargetDsl.library(testTimeout: Int? = null, config: (KotlinJsTargetDsl.() -> Unit)? = null) {
     browser()
     nodejs()
     if (testTimeout != null) enableTesting(testTimeout, forBrowser = true, forNodeJs = true)
