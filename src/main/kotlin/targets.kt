@@ -1,46 +1,62 @@
+import linuxTargets
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
-@OptIn(ExperimentalStdlibApi::class)
-fun KotlinMultiplatformExtension.iosTargets(supportedByCoroutines: Boolean) = buildList {
-    add(iosArm64())
-    add(iosArm32())
-    add(iosX64())
-}
+fun KotlinMultiplatformExtension.iosTargets() = listOf(
+    // Tier 1
+    iosX64(),
 
-@OptIn(ExperimentalStdlibApi::class)
-fun KotlinMultiplatformExtension.tvOsTargets(supportedByCoroutines: Boolean) = buildList {
-    add(tvosArm64())
-    add(tvosX64())
-}
+    // Tier 2
+    iosArm64(),
+    iosSimulatorArm64()
+)
 
-fun KotlinMultiplatformExtension.watchOsTargets(supportedByCoroutines: Boolean) = listOf(
+fun KotlinMultiplatformExtension.tvOsTargets() = listOf(
+    // Tier 1
+    // No tier 1 tvos targets
+    // Tier 2
+    tvosArm64(),
+    tvosSimulatorArm64(),
+    tvosX64()
+)
+
+fun KotlinMultiplatformExtension.watchOsTargets() = listOf(
+    // No Tier 1 watchOsTargets at the moment
+    // Tier 2
+    watchosSimulatorArm64(),
     watchosX64(),
     watchosX86(),
     watchosArm32(),
-    watchosArm64()
+    watchosArm64(),
+    // Tier 3
+    watchosDeviceArm64(),
 )
 
-fun KotlinMultiplatformExtension.macOsTargets(supportedByCoroutines: Boolean) = listOf(
-    macosX64()
+fun KotlinMultiplatformExtension.macOsTargets() = listOf(
+    //Tier 1
+    macosX64(),
+    macosArm64(),
 )
 
-@OptIn(ExperimentalStdlibApi::class)
-fun KotlinMultiplatformExtension.darwinTargets(supportedByCoroutines: Boolean) = buildList {
-    addAll(iosTargets(supportedByCoroutines))
-    addAll(tvOsTargets(supportedByCoroutines))
-    addAll(macOsTargets(supportedByCoroutines))
-    addAll(watchOsTargets(supportedByCoroutines))
-}
+fun KotlinMultiplatformExtension.osxTargets() = iosTargets() + tvOsTargets() + macOsTargets() + watchOsTargets()
 
-@OptIn(ExperimentalStdlibApi::class)
-fun KotlinMultiplatformExtension.linuxTargets(supportedByCoroutines: Boolean) = buildList {
-    add(linuxX64())
-    if (!supportedByCoroutines) {
-        add(linuxArm64())
-        add(linuxArm32Hfp())
-    }
-}
+fun KotlinMultiplatformExtension.linuxTargets() = listOf(
+    // Tier 1
+    linuxX64(),
+    // Tier 2
+    linuxArm64(),
+)
 
-fun KotlinMultiplatformExtension.nativeTargets(
-    supportedByCoroutines: Boolean
-) = darwinTargets(supportedByCoroutines) + linuxTargets(supportedByCoroutines)
+fun KotlinMultiplatformExtension.ndkTargets() = listOf(
+    // No Tier 1 and 2 ndk targets for now
+    androidNativeArm32(),
+    androidNativeArm64(),
+    androidNativeX86(),
+    androidNativeX64(),
+)
+
+fun KotlinMultiplatformExtension.mingwTargets() = listOf(
+    // No Tier 1 and 2 mingw targets for now
+    mingwX64(),
+)
+
+fun KotlinMultiplatformExtension.nativeTargets() = osxTargets() + ndkTargets() + linuxTargets() + mingwTargets()

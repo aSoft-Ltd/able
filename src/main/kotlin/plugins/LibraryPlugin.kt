@@ -2,18 +2,31 @@ package plugins
 
 import com.android.build.gradle.LibraryExtension
 import configureAndroid
-import enableTesting
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.repositories
-import org.jetbrains.kotlin.gradle.dsl.KotlinJsProjectExtension
 import publicRepos
+import tasks.UpdateReadeMeTask
+import java.io.File
 
 open class LibraryPlugin : Plugin<Project> {
     fun Project.setupAndroidLib(dir: String) {
         configure<LibraryExtension> {
             configureAndroid(dir)
+        }
+    }
+
+    private fun Project.setupUpdateReadMeTask() {
+        val root = rootProject
+        val v = version.toString()
+        if (root.tasks.findByName("updateReadMe") == null) {
+            root.tasks.register("updateReadMe", UpdateReadeMeTask::class.java).configure {
+                configure(v)
+            }
+        }
+        tasks.register("updateReadMe", UpdateReadeMeTask::class.java).configure {
+            configure(v)
         }
     }
 
@@ -27,7 +40,9 @@ open class LibraryPlugin : Plugin<Project> {
         }
 
         plugins.apply("maven-publish")
-
+        project.afterEvaluate {
+            setupUpdateReadMeTask()
+        }
         repositories { publicRepos() }
     }
 }

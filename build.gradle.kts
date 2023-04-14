@@ -5,7 +5,6 @@
     signing
     alias(nexus.plugins.publish)
     id("com.gradle.plugin-publish") version "0.16.0"
-//    alias(plugs.plugins.publish)
 }
 
 repositories {
@@ -14,10 +13,6 @@ repositories {
     mavenCentral()
 }
 
-//java {
-//    sourceCompatibility = JavaVersion.VERSION_11
-//    targetCompatibility = JavaVersion.VERSION_11
-//}
 
 gradlePlugin {
     plugins {
@@ -153,7 +148,6 @@ artifacts {
 dependencies {
     implementation(androidx.gradle.plugin)
     implementation(kotlinz.gradle.plugin)
-    // implementation(kotlinz.gradle.plugin.serialization)
     implementation(nexus.gradle.plugin.publish)
     implementation(nexus.gradle.plugin.staging)
 }
