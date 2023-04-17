@@ -9,6 +9,7 @@ import org.gradle.api.tasks.InputFile
 import org.gradle.api.tasks.Optional
 import org.gradle.api.tasks.OutputFile
 import org.gradle.api.tasks.TaskAction
+import java.io.File
 
 abstract class UpdateReadeMeTask : DefaultTask() {
 
@@ -49,8 +50,33 @@ abstract class UpdateReadeMeTask : DefaultTask() {
         val doc = file.readText()
             .replace("[badges]", badges())
             .replace("[version]", version.get())
+            .injectIfPossible(file.parentFile)
 
         output.get().asFile.writeText(doc)
+    }
+
+    private fun String.locateTokens(): MutableMap<String, String> {
+        val tokens = mutableMapOf<String, String>()
+        val splits = split("[inject](")
+        if (splits.size > 1) for (i in splits.indices) {
+            val path = splits.getOrNull(i + 1)?.split(")")?.getOrNull(0)
+            if (path != null) {
+                tokens[path] = ""
+            }
+        }
+        return tokens
+    }
+
+    private fun String.injectIfPossible(main: File): String {
+        val tokens = locateTokens()
+        val contents = tokens.mapValues { (path, _) ->
+            File(main, path).readText()
+        }
+        var out = this
+        contents.forEach { (path, content) ->
+            out = out.replace("[inject]($path)", "\n```kotlin\n$content\n```\n")
+        }
+        return out
     }
 
     private fun srcFile() = if (input.isPresent) {

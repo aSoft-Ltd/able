@@ -6,6 +6,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinWithJavaTarget
 import org.jetbrains.kotlin.gradle.targets.js.dsl.KotlinJsBrowserDsl
 import org.jetbrains.kotlin.gradle.targets.js.dsl.KotlinJsNodeDsl
 import org.jetbrains.kotlin.gradle.targets.js.dsl.KotlinJsTargetDsl
+import org.jetbrains.kotlin.gradle.targets.js.dsl.KotlinWasmTargetDsl
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 import org.jetbrains.kotlin.gradle.targets.jvm.KotlinJvmTarget
 
@@ -88,5 +89,16 @@ fun KotlinJsTargetDsl.library(testTimeout: Int? = null, config: (KotlinJsTargetD
     browser()
     nodejs()
     if (testTimeout != null) enableTesting(testTimeout, forBrowser = true, forNodeJs = true)
+    if (config != null) config()
+}
+
+fun KotlinWasmTargetDsl.library(testTimeout: Int? = null, config: (KotlinJsTargetDsl.() -> Unit)? = null) {
+    browser {
+        commonWebpackConfig {
+            experiments = mutableSetOf("topLevelAwait")
+        }
+    }
+//    nodejs()
+    if (testTimeout != null) enableTesting(testTimeout, forBrowser = true, forNodeJs = false)
     if (config != null) config()
 }
