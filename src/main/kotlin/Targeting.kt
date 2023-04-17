@@ -1,7 +1,7 @@
 object Targeting {
     val ANDROID get() = targeting("ANDROID", false) || ALL
     val JVM get() = targeting("JVM", true) || ALL
-    val JS get() = targeting("JS", false) || ALL
+    val JS get() = targeting("JS", true) || ALL
 
     val WASM get() = targeting("WASM", false) || ALL
 
