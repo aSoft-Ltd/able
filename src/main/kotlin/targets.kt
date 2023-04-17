@@ -22,13 +22,13 @@ fun KotlinMultiplatformExtension.tvOsTargets() = listOf(
 fun KotlinMultiplatformExtension.watchOsTargets() = listOf(
     // No Tier 1 watchOsTargets at the moment
     // Tier 2
-    watchosSimulatorArm64(),
+   //    watchosSimulatorArm64(),   Removed coz there is no serialization support yet
     watchosX64(),
     watchosX86(),
     watchosArm32(),
     watchosArm64(),
     // Tier 3
-    watchosDeviceArm64(),
+    // watchosDeviceArm64(),        Removed coz there is no serialization support yet
 )
 
 fun KotlinMultiplatformExtension.macOsTargets() = listOf(
