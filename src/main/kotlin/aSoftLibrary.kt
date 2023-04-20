@@ -2,7 +2,6 @@ import io.github.gradlenexus.publishplugin.NexusPublishExtension
 import org.gradle.api.Project
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.kotlin.dsl.configure
-import org.gradle.kotlin.dsl.repositories
 
 fun Project.aSoftCSSLibrary(
     version: String,
@@ -13,8 +12,8 @@ fun Project.deployToSonatype(
     version: String? = null,
     group: String? = null,
 ) {
-    this.group = group ?: this.group ?: "tz.co.asoft"
-    this.version = version ?: this.version ?: throw Exception("Version must be set")
+    this.group = group ?: this.group.toString()
+    this.version = version ?: this.version.toString()
 
     configure<NexusPublishExtension> {
         repositories {
