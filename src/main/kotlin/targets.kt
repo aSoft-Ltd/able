@@ -6,7 +6,7 @@ fun KotlinMultiplatformExtension.iosTargets() = listOf(
     iosX64(),
 
     // Tier 2
-    iosArm64(),
+//    iosArm64(),
     iosSimulatorArm64()
 )
 
