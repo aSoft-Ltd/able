@@ -6,7 +6,7 @@ fun KotlinMultiplatformExtension.iosTargets() = listOf(
     iosX64(),
 
     // Tier 2
-//    iosArm64(),
+    iosArm64(),
     iosSimulatorArm64()
 )
 
@@ -43,7 +43,7 @@ fun KotlinMultiplatformExtension.linuxTargets() = listOf(
     // Tier 1
     linuxX64(),
     // Tier 2
-    // linuxArm64(), // until we kotlinx-coroutines supports this. We ain't gonna
+    // linuxArm64(), // until kotlinx-coroutines supports this. We ain't gonna
 )
 
 fun KotlinMultiplatformExtension.ndkTargets() = listOf(
