@@ -25,6 +25,8 @@ fun Project.MavenLibrary(
     this.licenseUrl = licenseUrl
     this.developerId = developerId
     this.developerName = developerName
+    rootProject.group = group
+    rootProject.version = version
 
 //    val nexusUsername = System.getenv("ASOFT_NEXUS_USERNAME") ?: "null"
 //    val nexusPassword = System.getenv("ASOFT_NEXUS_PASSWORD") ?: "null"
