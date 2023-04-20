@@ -47,4 +47,6 @@ fun Project.aSoftOSSLibrary(
     licenseUrl,
     developerId,
     developerName
-)
+).apply {
+    deployToSonatype(version,"tz.co.asoft")
+}
