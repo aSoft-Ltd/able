@@ -19,7 +19,7 @@ open class LibraryPlugin : Plugin<Project> {
 
     private fun Project.setupUpdateReadMeTask() {
         val root = rootProject
-        val v = version.toString()
+        val v = root.version.toString()
         if (root.tasks.findByName("updateReadMe") == null) {
             root.tasks.register("updateReadMe", UpdateReadeMeTask::class.java).configure {
                 configure(v)

@@ -1,5 +1,0 @@
-package tasks
-
-class FileContentInjector {
-
-}
