@@ -1,10 +1,21 @@
 import com.android.build.gradle.BaseExtension
 import org.gradle.api.JavaVersion
+import org.gradle.api.Project
+import org.gradle.kotlin.dsl.configure
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinAndroidTarget
 
 /**
  * Configures the android plugin - (both application and library)
  */
+
+fun Project.configureAndroid(
+    dir: String = "src/androidMain",
+    builder: (BaseExtension.() -> Unit)? = null
+) = configure<BaseExtension> {
+    configureAndroid(dir)
+    builder?.invoke(this)
+}
+
 fun BaseExtension.configureAndroid(dir: String = "src/androidMain") {
 
     compileSdkVersion(30)
@@ -22,7 +33,6 @@ fun BaseExtension.configureAndroid(dir: String = "src/androidMain") {
         getByName("main") {
             java.srcDir("$dir/kotlin")
             manifest.srcFile("$dir/AndroidManifest.xml")
-            assets.srcDirs("$dir/assets", "build/intermediates/konfigs")
             res.srcDirs("$dir/resources")
         }
     }
