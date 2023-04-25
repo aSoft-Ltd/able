@@ -69,6 +69,7 @@ fun KotlinJsTargetDsl.browserApp(testTimeout: Int? = null, config: (KotlinJsBrow
  * @param testTimeout in milliseconds, set to null to disable testing
  */
 fun KotlinJsTargetDsl.nodeLib(testTimeout: Int? = null, config: (KotlinJsNodeDsl.() -> Unit)? = null) {
+    moduleName = project.name
     nodejs {
         testTask {
             if (config != null) config()
@@ -86,6 +87,7 @@ fun KotlinJsTargetDsl.nodeApp(testTimeout: Int? = null, config: (KotlinJsNodeDsl
 
 
 fun KotlinJsTargetDsl.library(testTimeout: Int? = null, config: (KotlinJsTargetDsl.() -> Unit)? = null) {
+    moduleName = project.name
     browser()
     nodejs()
     if (testTimeout != null) enableTesting(testTimeout, forBrowser = true, forNodeJs = true)
@@ -93,6 +95,7 @@ fun KotlinJsTargetDsl.library(testTimeout: Int? = null, config: (KotlinJsTargetD
 }
 
 fun KotlinWasmTargetDsl.library(testTimeout: Int? = null, config: (KotlinJsTargetDsl.() -> Unit)? = null) {
+    moduleName = project.name
     browser {
         commonWebpackConfig {
             experiments = mutableSetOf("topLevelAwait")
