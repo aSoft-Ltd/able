@@ -39,6 +39,7 @@ fun KotlinJvmTarget.application(java: String = "1.8") {
  * @param testTimeout in milliseconds, set to null to disable testing
  */
 fun KotlinJsTargetDsl.browserLib(testTimeout: Int? = null, config: (KotlinJsBrowserDsl.() -> Unit)? = null) {
+    moduleName = project.name
     if (testTimeout != null) project.createKarmaTimeoutFile(testTimeout)
     compilations.all { kotlinOptions { sourceMap = true } }
     browser {
@@ -52,6 +53,7 @@ fun KotlinJsTargetDsl.browserLib(testTimeout: Int? = null, config: (KotlinJsBrow
  * @param testTimeout in milliseconds, set to null to disable testing
  */
 fun KotlinJsTargetDsl.browserApp(testTimeout: Int? = null, config: (KotlinJsBrowserDsl.() -> Unit)? = null) {
+    moduleName = project.name
     browserLib(testTimeout) {
         commonWebpackConfig {
             cssSupport {
