@@ -7,7 +7,10 @@ fun KotlinMultiplatformExtension.iosTargets() = listOf(
 
     // Tier 2
     iosArm64(),
-    iosSimulatorArm64()
+    iosSimulatorArm64(),
+
+    // Deprecated
+    iosArm32(),
 )
 
 fun KotlinMultiplatformExtension.tvOsTargets() = listOf(
@@ -22,13 +25,15 @@ fun KotlinMultiplatformExtension.tvOsTargets() = listOf(
 fun KotlinMultiplatformExtension.watchOsTargets() = listOf(
     // No Tier 1 watchOsTargets at the moment
     // Tier 2
-   //    watchosSimulatorArm64(),   Removed coz there is no serialization support yet
+    watchosSimulatorArm64(),
     watchosX64(),
-    watchosX86(),
     watchosArm32(),
     watchosArm64(),
     // Tier 3
-    // watchosDeviceArm64(),        Removed coz there is no serialization support yet
+    watchosDeviceArm64(),
+
+    // Deprecated
+    watchosArm32()
 )
 
 fun KotlinMultiplatformExtension.macOsTargets() = listOf(
@@ -43,7 +48,10 @@ fun KotlinMultiplatformExtension.linuxTargets() = listOf(
     // Tier 1
     linuxX64(),
     // Tier 2
-    // linuxArm64(), // until kotlinx-coroutines supports this. We ain't gonna
+    linuxArm64(),
+
+    // Deprecated
+    // linuxArm32Hfp() until kotlinx-coroutines supports this, we ain't gonna
 )
 
 fun KotlinMultiplatformExtension.ndkTargets() = listOf(
@@ -57,6 +65,9 @@ fun KotlinMultiplatformExtension.ndkTargets() = listOf(
 fun KotlinMultiplatformExtension.mingwTargets() = listOf(
     // No Tier 1 and 2 mingw targets for now
     mingwX64(),
+
+    // Deprecated
+    // mingwX86()  until kotlinx-coroutines supports this, we ain't gonna
 )
 
 fun KotlinMultiplatformExtension.nativeTargets() = osxTargets() + ndkTargets() + linuxTargets() + mingwTargets()
