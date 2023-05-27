@@ -18,7 +18,7 @@ fun Project.useJunit5() {
 
 fun KotlinJvmTarget.targetJava(version: String = "1.8") = compilations.all {
     kotlinOptions {
-        jvmTarget = version
+//        jvmTarget = version
         freeCompilerArgs = listOf("-Xallow-unstable-dependencies")
     }
     project.useJunit5()
@@ -27,7 +27,7 @@ fun KotlinJvmTarget.targetJava(version: String = "1.8") = compilations.all {
 fun KotlinWithJavaTarget<KotlinJvmOptions,KotlinJvmCompilerOptions>.targetJava(version: String = "1.8") {
     compilations.all {
         kotlinOptions {
-            jvmTarget = version
+//            jvmTarget = version
             freeCompilerArgs = listOf("-Xallow-unstable-dependencies")
         }
     }

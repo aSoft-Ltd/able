@@ -52,7 +52,7 @@ fun KotlinJsTargetDsl.enableTesting(timeout: Int = 10000, forBrowser: Boolean = 
 fun KotlinJsTargetDsl.application(testTimeout: Int? = null, withNodeJs: Boolean = false) {
     browser {
         commonWebpackConfig {
-            cssSupport{ enabled.set(true) }
+            cssSupport { enabled.set(true) }
             outputFileName = "main.bundle.js"
             devServer = project.DEFAULT_DEV_SERVER
         }
