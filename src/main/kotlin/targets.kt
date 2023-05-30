@@ -48,10 +48,10 @@ fun KotlinMultiplatformExtension.linuxTargets() = listOf(
     // Tier 1
     linuxX64(),
     // Tier 2
-    linuxArm64(),
+    // linuxArm64(), // until ktor and okio supports this target, we ain't gonna
 
     // Deprecated
-    // linuxArm32Hfp() until kotlinx-coroutines supports this, we ain't gonna
+    // linuxArm32Hfp() // until kotlinx-coroutines supports this, we ain't gonna
 )
 
 fun KotlinMultiplatformExtension.ndkTargets() = listOf(
