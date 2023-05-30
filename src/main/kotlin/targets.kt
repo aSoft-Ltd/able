@@ -10,7 +10,7 @@ fun KotlinMultiplatformExtension.iosTargets() = listOf(
     iosSimulatorArm64(),
 
     // Deprecated
-    iosArm32(),
+    // iosArm32(), // until compose supports this target, we ain't gonna
 )
 
 fun KotlinMultiplatformExtension.tvOsTargets() = listOf(
@@ -30,7 +30,7 @@ fun KotlinMultiplatformExtension.watchOsTargets() = listOf(
     watchosArm32(),
     watchosArm64(),
     // Tier 3
-    watchosDeviceArm64(),
+    // watchosDeviceArm64(), // until compose supports this target, we ain't gonna
 
     // Deprecated
     watchosArm32()
