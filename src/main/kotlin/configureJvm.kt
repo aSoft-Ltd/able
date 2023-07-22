@@ -1,4 +1,5 @@
 import org.gradle.api.Project
+import org.gradle.api.tasks.compile.JavaCompile
 import org.gradle.api.tasks.testing.Test
 import org.gradle.kotlin.dsl.getting
 import org.gradle.kotlin.dsl.withType
@@ -17,19 +18,24 @@ fun Project.useJunit5() {
 }
 
 fun KotlinJvmTarget.targetJava(version: String = "1.8") = compilations.all {
+    compileJavaTaskProvider?.configure { targetJvm(version) }
     kotlinOptions {
-//        jvmTarget = version
-        freeCompilerArgs = listOf("-Xallow-unstable-dependencies")
+        jvmTarget = version
+//        freeCompilerArgs = listOf("-Xallow-unstable-dependencies")
     }
     project.useJunit5()
 }
 
-fun KotlinWithJavaTarget<KotlinJvmOptions,KotlinJvmCompilerOptions>.targetJava(version: String = "1.8") {
-    compilations.all {
-        kotlinOptions {
-//            jvmTarget = version
-            freeCompilerArgs = listOf("-Xallow-unstable-dependencies")
-        }
+fun KotlinWithJavaTarget<KotlinJvmOptions, KotlinJvmCompilerOptions>.targetJava(version: String = "1.8") = compilations.all {
+    compileJavaTaskProvider.configure { targetJvm(version) }
+    kotlinOptions {
+        jvmTarget = version
+//        freeCompilerArgs = listOf("-Xallow-unstable-dependencies")
     }
     project.useJunit5()
+}
+
+fun JavaCompile.targetJvm(version: String) {
+    sourceCompatibility = version
+    targetCompatibility = version
 }
