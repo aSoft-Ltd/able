@@ -61,10 +61,10 @@ fun BaseExtension.configureAndroid(dir: String = "src/androidMain") {
     }
 }
 
-fun KotlinAndroidTarget.targetJava(version: String = "1.8") = compilations.all {
+fun KotlinAndroidTarget.targetJava(version: String = "1.8", jupiter: Boolean = true) = compilations.all {
     kotlinOptions {
         jvmTarget = version
         freeCompilerArgs = listOf("-Xallow-unstable-dependencies")
     }
-    project.useJunit5()
+    if (jupiter) project.useJunit5()
 }
