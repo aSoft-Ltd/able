@@ -36,7 +36,7 @@ gradlePlugin {
 }
 
 group = "tz.co.asoft"
-version = asoft.versions.root.get()
+version = libs.versions.asoft.get()
 
 pluginBundle {
     website = "https://github.com/aSoft-Ltd/able"
