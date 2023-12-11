@@ -8,6 +8,7 @@ import org.jetbrains.kotlin.gradle.targets.js.dsl.KotlinJsBrowserDsl
 import org.jetbrains.kotlin.gradle.targets.js.dsl.KotlinJsNodeDsl
 import org.jetbrains.kotlin.gradle.targets.js.dsl.KotlinJsTargetDsl
 import org.jetbrains.kotlin.gradle.targets.js.dsl.KotlinWasmTargetDsl
+import org.jetbrains.kotlin.gradle.targets.js.dsl.KotlinWasmWasiTargetDsl
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 import org.jetbrains.kotlin.gradle.targets.jvm.KotlinJvmTarget
 
@@ -94,6 +95,17 @@ fun KotlinJsTargetDsl.library(testTimeout: Int? = null, config: (KotlinJsTargetD
     browser()
     nodejs()
     if (testTimeout != null) enableTesting(testTimeout, forBrowser = true, forNodeJs = true)
+    if (config != null) config()
+}
+
+fun KotlinWasmWasiTargetDsl.library(testTimeout: Int? = null, config: (KotlinWasmWasiTargetDsl.() -> Unit)? = null) {
+    nodejs {
+        if (testTimeout != null) testTask {
+            useMocha {
+                timeout = "${timeout}ms"
+            }
+        }
+    }
     if (config != null) config()
 }
 
