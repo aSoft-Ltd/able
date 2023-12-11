@@ -40,15 +40,11 @@ fun KotlinJvmTarget.application(java: String = "1.8", jupiter: Boolean = true) {
 /**
  * @param testTimeout in milliseconds, set to null to disable testing
  */
-fun KotlinJsTargetDsl.browserLib(testTimeout: Int? = null, config: (KotlinJsBrowserDsl.() -> Unit)? = null) {
+fun KotlinJsTargetDsl.browserLib(testTimeout: Int? = null, config: (KotlinJsTargetDsl.() -> Unit)? = null) {
     moduleName = project.name
-    if (testTimeout != null) project.createKarmaTimeoutFile(testTimeout)
-    compilations.all { kotlinOptions { sourceMap = true } }
-    browser {
-        commonWebpackConfig { sourceMaps = true }
-        if (testTimeout == null) testTask { enabled = false }
-        if (config != null) config()
-    }
+    browser()
+    if (testTimeout != null) enableTesting(testTimeout, forBrowser = true, forNodeJs = true)
+    if (config != null) config()
 }
 
 /**
@@ -57,14 +53,16 @@ fun KotlinJsTargetDsl.browserLib(testTimeout: Int? = null, config: (KotlinJsBrow
 fun KotlinJsTargetDsl.browserApp(testTimeout: Int? = null, config: (KotlinJsBrowserDsl.() -> Unit)? = null) {
     moduleName = project.name
     browserLib(testTimeout) {
-        commonWebpackConfig {
-            cssSupport {
-                enabled.set(true)
+        browser {
+            commonWebpackConfig {
+                cssSupport {
+                    enabled.set(true)
+                }
+                outputFileName = "main.bundle.js"
+                devServer = project.DEFAULT_DEV_SERVER
             }
-            outputFileName = "main.bundle.js"
-            devServer = project.DEFAULT_DEV_SERVER
+            if (config != null) config()
         }
-        if (config != null) config()
     }
     binaries.executable()
 }
