@@ -12,7 +12,7 @@ object Targeting {
 
     val NDK get() = targeting("NDK", false) || ALL_NATIVE
 
-    val LINUX get() = targeting("LINUX", true) || ALL_NATIVE
+    val LINUX get() = targeting("LINUX", false) || ALL_NATIVE
 
     val MINGW get() = targeting("MINGW", false) || ALL_NATIVE
 
