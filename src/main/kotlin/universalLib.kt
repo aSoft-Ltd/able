@@ -43,7 +43,7 @@ fun KotlinJvmTarget.application(java: String = "1.8", jupiter: Boolean = true) {
 fun KotlinJsTargetDsl.browserLib(testTimeout: Int? = null, config: (KotlinJsTargetDsl.() -> Unit)? = null) {
     moduleName = project.name
     browser()
-    if (testTimeout != null) enableTesting(testTimeout, forBrowser = true, forNodeJs = true)
+    if (testTimeout != null) enableTesting(testTimeout, forBrowser = true, forNodeJs = false)
     if (config != null) config()
 }
 
