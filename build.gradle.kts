@@ -1,4 +1,4 @@
-@Suppress("DSL_SCOPE_VIOLATION") plugins {
+plugins {
     `kotlin-dsl`
     `java-gradle-plugin`
     `maven-publish`
