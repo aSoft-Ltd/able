@@ -6,7 +6,7 @@ object Targeting {
 
     val JS get() = targeting("JS", true) || ALL
 
-    val WASM get() = targeting("WASM", true) || ALL
+    val WASM get() = targeting("WASM", false) || ALL
 
     val OSX get() = targeting("OSX", false) || ALL_NATIVE
 
