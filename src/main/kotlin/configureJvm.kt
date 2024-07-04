@@ -13,7 +13,7 @@ fun Project.useJunit5() {
     }
 }
 
-fun KotlinJvmTarget.targetJava(version: String = "1.8", jupiter: Boolean = true) = compilations.all {
+fun KotlinJvmTarget.targetJava(version: String = "11", jupiter: Boolean = true) = compilations.all {
     compileJavaTaskProvider?.configure { targetJvm(version) }
     kotlinOptions {
         jvmTarget = version
@@ -21,7 +21,7 @@ fun KotlinJvmTarget.targetJava(version: String = "1.8", jupiter: Boolean = true)
     if (jupiter) project.useJunit5()
 }
 
-fun KotlinWithJavaTarget<KotlinJvmOptions, KotlinJvmCompilerOptions>.targetJava(version: String = "1.8", jupiter: Boolean = true) = compilations.all {
+fun KotlinWithJavaTarget<KotlinJvmOptions, KotlinJvmCompilerOptions>.targetJava(version: String = "11", jupiter: Boolean = true) = compilations.all {
     compileJavaTaskProvider.configure { targetJvm(version) }
     kotlinOptions {
         jvmTarget = version

@@ -12,28 +12,28 @@ import org.jetbrains.kotlin.gradle.targets.js.dsl.KotlinWasmWasiTargetDsl
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 import org.jetbrains.kotlin.gradle.targets.jvm.KotlinJvmTarget
 
-fun KotlinAndroidTarget.library(java: String = "1.8", jupiter: Boolean = true) {
+fun KotlinAndroidTarget.library(java: String = "11", jupiter: Boolean = true) {
     targetJava(java, jupiter)
     publishLibraryVariants("release")
 }
 
-fun KotlinAndroidTarget.application(java: String = "1.8", jupiter: Boolean = true) {
+fun KotlinAndroidTarget.application(java: String = "11", jupiter: Boolean = true) {
     targetJava(java, jupiter)
 }
 
-fun KotlinJvmTarget.library(java: String = "1.8", jupiter: Boolean = true) {
+fun KotlinJvmTarget.library(java: String = "11", jupiter: Boolean = true) {
     targetJava(java, jupiter)
 }
 
-fun KotlinWithJavaTarget<KotlinJvmOptions, KotlinJvmCompilerOptions>.library(java: String = "1.8", jupiter: Boolean = true) {
+fun KotlinWithJavaTarget<KotlinJvmOptions, KotlinJvmCompilerOptions>.library(java: String = "11", jupiter: Boolean = true) {
     targetJava(java, jupiter)
 }
 
-fun KotlinWithJavaTarget<KotlinJvmOptions, KotlinJvmCompilerOptions>.application(java: String = "1.8", jupiter: Boolean = true) {
+fun KotlinWithJavaTarget<KotlinJvmOptions, KotlinJvmCompilerOptions>.application(java: String = "11", jupiter: Boolean = true) {
     targetJava(java, jupiter)
 }
 
-fun KotlinJvmTarget.application(java: String = "1.8", jupiter: Boolean = true) {
+fun KotlinJvmTarget.application(java: String = "11", jupiter: Boolean = true) {
     targetJava(java, jupiter)
 }
 
