@@ -1,7 +1,11 @@
+@file:OptIn(ExperimentalKotlinGradlePluginApi::class)
+
 import com.android.build.gradle.BaseExtension
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinAndroidTarget
 
 /**
@@ -56,15 +60,20 @@ fun BaseExtension.configureAndroid(dir: String = "src/androidMain") {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 }
 
-fun KotlinAndroidTarget.targetJava(version: String = "1.8", jupiter: Boolean = true) = compilations.all {
-    kotlinOptions {
-        jvmTarget = version
-        freeCompilerArgs = listOf("-Xallow-unstable-dependencies")
+fun KotlinAndroidTarget.targetJava(version: String = "11", jupiter: Boolean = true) = compilations.all {
+    this@targetJava.compilerOptions {
+        jvmTarget.set(JvmTarget.fromTarget(version))
+        freeCompilerArgs.add("-Xallow-unstable-dependencies")
+//        freeCompilerArgs = listOf("-Xallow-unstable-dependencies")
     }
+//    kotlinOptions {
+//        jvmTarget = version
+//        freeCompilerArgs = listOf("-Xallow-unstable-dependencies")
+//    }
     if (jupiter) project.useJunit5()
 }
