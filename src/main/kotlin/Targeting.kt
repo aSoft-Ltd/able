@@ -20,7 +20,7 @@ object Targeting {
 
     val ALL_NATIVE get() = targeting("NATIVE", false) || ALL
 
-    val ALL get() = targeting("ALL", false)
+    val ALL get() = targeting("ALL", true)
 
     private fun targeting(key: String, default: Boolean) = when (System.getenv("TARGETING_$key")) {
         "true" -> true
