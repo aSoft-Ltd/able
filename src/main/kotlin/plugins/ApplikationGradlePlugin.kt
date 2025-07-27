@@ -11,7 +11,6 @@ import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.repositories
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinAndroidTarget
-import org.jetbrains.kotlin.gradle.targets.js.KotlinJsTarget
 import org.jetbrains.kotlin.gradle.targets.js.ir.KotlinJsIrTarget
 import org.jetbrains.kotlin.gradle.targets.jvm.KotlinJvmTarget
 import publicRepos
@@ -49,10 +48,6 @@ open class ApplikationGradlePlugin : Plugin<Project> {
 
                 is KotlinJvmTarget -> konfigs.forEach { konfig ->
                     ApplikationKonfigJvm(project, konfig, target)
-                }
-
-                is KotlinJsTarget -> konfigs.forEach { konfig ->
-                    ApplikationKonfigJs(project, konfig, target)
                 }
 
                 is KotlinJsIrTarget -> konfigs.forEach { konfig ->

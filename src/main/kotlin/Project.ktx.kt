@@ -1,12 +1,9 @@
 import org.gradle.api.Project
-import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
-import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinMultiplatformPlugin
 
 private val projectDetails = mutableMapOf<Project, MutableMap<String, Any?>>()
 var Project.url: String?
     get() = projectDetails[this]?.get("url") as? String
     set(value) {
-        KotlinMultiplatformPlugin
         val map = projectDetails[this] ?: mutableMapOf()
         map["url"] = value
         projectDetails[this] = map

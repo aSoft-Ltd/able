@@ -4,7 +4,6 @@ import org.gradle.api.Project
 import org.gradle.kotlin.dsl.create
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinAndroidTarget
-import org.jetbrains.kotlin.gradle.targets.js.KotlinJsTarget
 import org.jetbrains.kotlin.gradle.targets.js.ir.KotlinJsIrTarget
 import org.jetbrains.kotlin.gradle.targets.jvm.KotlinJvmTarget
 
@@ -35,7 +34,7 @@ open class ApplikationExtension(val project: Project) {
             } else {
                 project.afterEvaluate {
                     ext.targets.filter { target ->
-                        target is KotlinAndroidTarget || target is KotlinJvmTarget || target is KotlinJsTarget || target is KotlinJsIrTarget
+                        target is KotlinAndroidTarget || target is KotlinJvmTarget || target is KotlinJsIrTarget
                     }.forEach { target ->
                         tasks.create<GenerateKonfigFileTask>("generate${target.name.capitalize()}${konfig.name.capitalize()}KonfigFile") {
                             this.konfig = konfig

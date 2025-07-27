@@ -7,7 +7,6 @@ import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.the
 import org.jetbrains.kotlin.gradle.plugin.KotlinTarget
 import org.jetbrains.kotlin.gradle.targets.js.ir.KotlinJsIrLink
-import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension
 import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootPlugin
 
 class ApplikationKonfigJs(val project: Project, val konfig: Konfig, val mppTarget: KotlinTarget?) {

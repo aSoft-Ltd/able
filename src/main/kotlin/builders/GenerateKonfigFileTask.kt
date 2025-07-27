@@ -6,7 +6,6 @@ import org.gradle.api.Project
 import org.gradle.api.tasks.*
 import org.jetbrains.kotlin.gradle.plugin.KotlinTarget
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinAndroidTarget
-import org.jetbrains.kotlin.gradle.targets.js.KotlinJsTarget
 import org.jetbrains.kotlin.gradle.targets.js.ir.KotlinJsIrTarget
 import org.jetbrains.kotlin.gradle.targets.jvm.KotlinJvmTarget
 import java.io.File
@@ -23,7 +22,6 @@ open class GenerateKonfigFileTask : DefaultTask() {
                 project.plugins.hasPlugin("org.jetbrains.kotlin.multiplatform") -> when (mppTarget) {
                     is KotlinAndroidTarget -> "$build/intermediates/konfigs"//"$build/intermediates/merged_assets/${konfig.name}/out"
                     is KotlinJvmTarget -> "$build/processedResources/${mppTarget.name}/main"
-                    is KotlinJsTarget -> "$build/resources/${mppTarget.name}"
                     is KotlinJsIrTarget -> "$build/resources/${mppTarget.name}"
                     else -> "$build/konfig/unsupported"
                 }

@@ -1,15 +1,9 @@
 import org.gradle.api.Action
-import org.jetbrains.kotlin.gradle.dsl.KotlinJvmCompilerOptions
-import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
-import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinAndroidTarget
-import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinWithJavaTarget
 import org.jetbrains.kotlin.gradle.targets.js.dsl.KotlinJsBrowserDsl
 import org.jetbrains.kotlin.gradle.targets.js.dsl.KotlinJsNodeDsl
 import org.jetbrains.kotlin.gradle.targets.js.dsl.KotlinJsTargetDsl
-import org.jetbrains.kotlin.gradle.targets.js.dsl.KotlinWasmTargetDsl
 import org.jetbrains.kotlin.gradle.targets.js.dsl.KotlinWasmWasiTargetDsl
-import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 import org.jetbrains.kotlin.gradle.targets.jvm.KotlinJvmTarget
 
 fun KotlinAndroidTarget.library(java: String = "11", jupiter: Boolean = true) {
@@ -25,13 +19,13 @@ fun KotlinJvmTarget.library(java: String = "11", jupiter: Boolean = true) {
     targetJava(java, jupiter)
 }
 
-fun KotlinWithJavaTarget<KotlinJvmOptions, KotlinJvmCompilerOptions>.library(java: String = "11", jupiter: Boolean = true) {
-    targetJava(java, jupiter)
-}
+//fun KotlinWithJavaTarget<KotlinJvmOptions, KotlinJvmCompilerOptions>.library(java: String = "11", jupiter: Boolean = true) {
+//    targetJava(java, jupiter)
+//}
 
-fun KotlinWithJavaTarget<KotlinJvmOptions, KotlinJvmCompilerOptions>.application(java: String = "11", jupiter: Boolean = true) {
-    targetJava(java, jupiter)
-}
+//fun KotlinWithJavaTarget<KotlinJvmOptions, KotlinJvmCompilerOptions>.application(java: String = "11", jupiter: Boolean = true) {
+//    targetJava(java, jupiter)
+//}
 
 fun KotlinJvmTarget.application(java: String = "11", jupiter: Boolean = true) {
     targetJava(java, jupiter)
@@ -41,7 +35,7 @@ fun KotlinJvmTarget.application(java: String = "11", jupiter: Boolean = true) {
  * @param testTimeout in milliseconds, set to null to disable testing
  */
 fun KotlinJsTargetDsl.browserLib(testTimeout: Int? = null, config: (KotlinJsTargetDsl.() -> Unit)? = null) {
-    moduleName = project.name
+    outputModuleName.set(project.name)
     browser()
     if (testTimeout != null) enableTesting(testTimeout, forBrowser = true, forNodeJs = false)
     if (config != null) config()
@@ -51,7 +45,7 @@ fun KotlinJsTargetDsl.browserLib(testTimeout: Int? = null, config: (KotlinJsTarg
  * @param testTimeout in milliseconds, set to null to disable testing
  */
 fun KotlinJsTargetDsl.browserApp(testTimeout: Int? = null, config: (KotlinJsBrowserDsl.() -> Unit)? = null) {
-    moduleName = project.name
+    outputModuleName.set(project.name)
     browserLib(testTimeout) {
         browser {
             commonWebpackConfig {
@@ -71,7 +65,7 @@ fun KotlinJsTargetDsl.browserApp(testTimeout: Int? = null, config: (KotlinJsBrow
  * @param testTimeout in milliseconds, set to null to disable testing
  */
 fun KotlinJsTargetDsl.nodeLib(testTimeout: Int? = null, config: (KotlinJsNodeDsl.() -> Unit)? = null) {
-    moduleName = project.name
+    outputModuleName.set(project.name)
     nodejs(Action {
         testTask {
             if (config != null) config()
@@ -89,7 +83,7 @@ fun KotlinJsTargetDsl.nodeApp(testTimeout: Int? = null, config: (KotlinJsNodeDsl
 
 
 fun KotlinJsTargetDsl.library(testTimeout: Int? = null, config: (KotlinJsTargetDsl.() -> Unit)? = null) {
-    moduleName = project.name
+    outputModuleName.set(project.name)
     browser()
     nodejs()
     if (testTimeout != null) enableTesting(testTimeout, forBrowser = true, forNodeJs = true)
