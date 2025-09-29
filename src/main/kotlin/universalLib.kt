@@ -39,6 +39,10 @@ fun KotlinJsTargetDsl.browserLib(testTimeout: Int? = null, config: (KotlinJsTarg
     browser()
     if (testTimeout != null) enableTesting(testTimeout, forBrowser = true, forNodeJs = false)
     if (config != null) config()
+    compilerOptions {
+        target.set("es2015")
+        freeCompilerArgs.add("-Xes-long-as-bigint")
+    }
 }
 
 /**
