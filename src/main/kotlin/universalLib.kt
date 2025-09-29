@@ -88,6 +88,11 @@ fun KotlinJsTargetDsl.library(testTimeout: Int? = null, config: (KotlinJsTargetD
     nodejs()
     if (testTimeout != null) enableTesting(testTimeout, forBrowser = true, forNodeJs = true)
     if (config != null) config()
+
+    compilerOptions {
+        target.set("es2015")
+        freeCompilerArgs.add("-Xes-long-as-bigint")
+    }
 }
 
 fun KotlinWasmWasiTargetDsl.library(testTimeout: Int? = null, config: (KotlinWasmWasiTargetDsl.() -> Unit)? = null) {
