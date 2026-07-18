@@ -1,36 +1,19 @@
-import linuxTargets
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 fun KotlinMultiplatformExtension.iosTargets() = listOf(
-    // Tier 1
-    iosX64(),
-
-    // Tier 2
     iosArm64(),
-    iosSimulatorArm64(),
-
-    // Deprecated
-    // iosArm32(), // until compose supports this target, we ain't gonna
+    iosSimulatorArm64()
 )
 
 fun KotlinMultiplatformExtension.tvOsTargets() = listOf(
-    // Tier 1
-    // No tier 1 tvos targets
-    // Tier 2
     tvosArm64(),
     tvosSimulatorArm64(),
-    tvosX64()
 )
 
 fun KotlinMultiplatformExtension.watchOsTargets() = listOf(
-    // No Tier 1 watchOsTargets at the moment
-    // Tier 2
     watchosSimulatorArm64(),
-    watchosX64(),
     watchosArm32(),
     watchosArm64(),
-    // Tier 3
-    // watchosDeviceArm64(), // until compose supports this target, we ain't gonna
 
     // Deprecated
     watchosArm32()
@@ -45,17 +28,10 @@ fun KotlinMultiplatformExtension.macOsTargets() = listOf(
 fun KotlinMultiplatformExtension.osxTargets() = iosTargets() + tvOsTargets() + macOsTargets() + watchOsTargets()
 
 fun KotlinMultiplatformExtension.linuxTargets() = listOf(
-    // Tier 1
     linuxX64(),
-    // Tier 2
-    // linuxArm64(), // until ktor and okio supports this target, we ain't gonna
-
-    // Deprecated
-    // linuxArm32Hfp() // until kotlinx-coroutines supports this, we ain't gonna
 )
 
 fun KotlinMultiplatformExtension.ndkTargets() = listOf(
-    // No Tier 1 and 2 ndk targets for now
     androidNativeArm32(),
     androidNativeArm64(),
     androidNativeX86(),
@@ -63,11 +39,7 @@ fun KotlinMultiplatformExtension.ndkTargets() = listOf(
 )
 
 fun KotlinMultiplatformExtension.mingwTargets() = listOf(
-    // No Tier 1 and 2 mingw targets for now
-    mingwX64(),
-
-    // Deprecated
-    // mingwX86()  until kotlinx-coroutines supports this, we ain't gonna
+    mingwX64()
 )
 
 fun KotlinMultiplatformExtension.nativeTargets() = osxTargets() + ndkTargets() + linuxTargets() + mingwTargets()
