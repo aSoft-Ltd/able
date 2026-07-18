@@ -27,6 +27,20 @@ fun KotlinMultiplatformExtension.macOsTargets() = listOf(
 
 fun KotlinMultiplatformExtension.osxTargets() = iosTargets() + tvOsTargets() + macOsTargets() + watchOsTargets()
 
+fun KotlinMultiplatformExtension.osxComposeTargets() = listOf(
+    iosArm64(),
+    iosSimulatorArm64(),
+    tvosArm64(),
+    tvosSimulatorArm64(),
+    macosArm64(),
+    watchosSimulatorArm64(),
+    watchosArm32(),
+    watchosArm64(),
+
+    // Deprecated
+    watchosArm32()
+)
+
 fun KotlinMultiplatformExtension.linuxTargets() = listOf(
     linuxX64(),
 )
