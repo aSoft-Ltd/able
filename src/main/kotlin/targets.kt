@@ -21,7 +21,6 @@ fun KotlinMultiplatformExtension.watchOsTargets() = listOf(
 
 fun KotlinMultiplatformExtension.macOsTargets() = listOf(
     //Tier 1
-    macosX64(),
     macosArm64(),
 )
 
