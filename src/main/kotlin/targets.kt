@@ -12,11 +12,11 @@ fun KotlinMultiplatformExtension.tvOsTargets() = listOf(
 
 fun KotlinMultiplatformExtension.watchOsTargets() = listOf(
     watchosSimulatorArm64(),
-    watchosArm32(),
+//    watchosArm32(),
     watchosArm64(),
 
     // Deprecated
-    watchosArm32()
+//    watchosArm32()
 )
 
 fun KotlinMultiplatformExtension.macOsTargets() = listOf(
@@ -33,11 +33,7 @@ fun KotlinMultiplatformExtension.osxComposeTargets() = listOf(
     tvosSimulatorArm64(),
     macosArm64(),
     watchosSimulatorArm64(),
-    watchosArm32(),
     watchosArm64(),
-
-    // Deprecated
-    watchosArm32()
 )
 
 fun KotlinMultiplatformExtension.linuxTargets() = listOf(
